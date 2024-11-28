@@ -10,4 +10,4 @@ Use `docker build -t rag-chat-backend .` and `docker build -t rag-chat-frontend 
 
 Make a copy of `.env.backend.template` and `.env.frontend.template` and modify them according to your configuration and place them as `.env.backend` and `.env.frontend` next to the `docker-compose.yml` file.
 
-The provided `docker-compose.yml` file runs a complete working example from the created docker images. Use {} and {} to pull from the published repos instead.
+The provided `docker-compose.yml` file runs a complete working example from the created docker images. Use `dannycarrera/rag-ai-chatbot-backend` and `dannycarrera/rag-ai-chatbot-frontend` to pull from the published repos instead.
