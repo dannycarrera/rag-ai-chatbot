@@ -1,0 +1,51 @@
+name: rag-ai-chatbot
+services:
+  postgres:
+    image: postgres:16.6
+    restart: always
+    volumes:
+      - psql:/var/lib/postgres/data
+    env_file: .env.backend
+    networks:
+      - app-network
+    ports:
+      - "5488:5432"
+
+  redis:
+    image: redis/redis-stack-server:latest
+    restart: always
+    environment:
+      REDIS_ARGS: "--appendonly yes"
+    volumes:
+      - redis:/data
+    networks:
+      - app-network
+    ports:
+      - "6380:6379"
+
+  backend:
+    image: rag-chat-backend
+    restart: always
+    depends_on:
+      - postgres
+      - redis
+    env_file: .env.backend
+    ports:
+      - "5555:5555"
+    networks:
+      - app-network
+
+  frontend:
+    image: rag-chat-frontend
+    restart: always
+    depends_on:
+      - backend
+    env_file: ./frontend/.env
+    ports:
+      - "3000:3000"
+
+volumes:
+  psql:
+  redis:
+networks:
+  app-network:

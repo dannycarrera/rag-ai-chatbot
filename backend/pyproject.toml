@@ -1,0 +1,93 @@
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "app"
+version = "0.1.0"
+description = "AI Chatbot w/ RAG from scraped websites - flask server"
+readme = "README.md"
+authors = ["Daniel Carrera <daniel@danielcarrera.dev>"]
+license = "AGPL"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4.0"
+langchain-core = "^0.3.21"
+aiohttp = "^3.11.7"
+bs4 = "^0.0.2"
+langchain = "^0.3.8"
+langchain-community = "^0.3.8"
+langchain-redis = "^0.1.1"
+langgraph = "^0.2.53"
+langchain-ollama = "^0.2.0"
+langchain-openai = "^0.2.9"
+flask = {extras = ["async"], version = "^3.1.0"}
+flask-cors = "^5.0.0"
+langgraph-checkpoint = "^2.0.5"
+langgraph-checkpoint-postgres = "^2.0.3"
+psycopg2 = "^2.9.10"
+peewee = "^3.17.8"
+psycopg = {extras = ["binary", "pool"], version = "^3.2.3"}
+lxml = "^5.3.0"
+logging = "^0.4.9.6"
+
+[tool.poetry.group.lint.dependencies]
+ruff = "0.4.4"
+mypy = "1.10.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest-asyncio = "^0.24.0"
+pytest = "8.3.3"
+ruff = "0.4.4"
+mypy = "1.10.0"
+
+[tool.poetry.group.test.dependencies]
+pytest = "8.3.3"
+
+[tool.poetry.scripts]
+start-flask = "app.main:main"
+
+[tool.ruff]
+line-length = 100
+indent-width = 4
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
+
+[tool.ruff.lint]
+select = [
+    "F",   # pyflakes
+    "E",   # pycodestyle
+    "I",   # isort
+    "ANN", # flake8 type annotations
+    "RUF", # ruff-specific rules
+]
+fixable = ["ALL"]
+ignore = ["ANN101"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+disallow_untyped_defs = true
+
+[pytest]
+log_cli = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope="function"
+minversion = "6.0"
+addopts = "-ra -q"
+pythonpath = [
+  "api"
+]
+testpaths = [
+    "tests"
+]
+
