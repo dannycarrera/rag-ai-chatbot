@@ -1,5 +1,5 @@
 {
-  "name": "my-cra-ts-app",
+  "name": "rag-ai-chatbot-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -24,7 +24,7 @@ services:
       - "6380:6379"
 
   backend:
-    image: rag-chat-backend
+    image: rag-chat-backend # dannycarrera/rag-ai-chatbot-backend
     restart: always
     depends_on:
       - postgres
@@ -36,13 +36,13 @@ services:
       - app-network
 
   frontend:
-    image: rag-chat-frontend
+    image: rag-chat-frontend # dannycarrera/rag-ai-chatbot-frontend
     restart: always
     depends_on:
       - backend
-    env_file: ./frontend/.env
+    env_file: .env.frontend
     ports:
-      - "3000:3000"
+      - "3000:80"
 
 volumes:
   psql:
