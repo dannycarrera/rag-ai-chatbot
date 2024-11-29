@@ -31,11 +31,11 @@ jobs:
       # Build and push the backend Docker image
       - name: Build and push backend image
         run: |
-          docker build --build-arg REACT_APP_BACKEND_URL=https://api.rag-ai-chatbot.danielcarrera.dev -t dannycarrera/rag-ai-chatbot-backend:latest ./backend
+          docker build -t dannycarrera/rag-ai-chatbot-backend:latest ./backend
           docker push dannycarrera/rag-ai-chatbot-backend:latest
 
       # Build and push the frontend Docker image
       - name: Build and push frontend image
         run: |
-          docker build -t dannycarrera/rag-ai-chatbot-frontend:latest ./frontend
+          docker build --build-arg REACT_APP_BACKEND_URL=https://api.rag-ai-chatbot.danielcarrera.dev -t dannycarrera/rag-ai-chatbot-frontend:latest ./frontend
           docker push dannycarrera/rag-ai-chatbot-frontend:latest
