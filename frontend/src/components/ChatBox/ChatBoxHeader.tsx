@@ -33,7 +33,7 @@ function ConfirmNewAgentDialog({
   return (
     <Dialog
       open={open}
-      onClose={handleContinue}
+      onClose={() => setOpen(false)}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >

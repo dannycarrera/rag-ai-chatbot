@@ -31,10 +31,12 @@ export default function AppForm({}) {
   } = useForm({ mode: 'all' })
 
   const dispatch = useDispatch()
-  const [startChatMutation, { isLoading }] = useStartChatMutation()
+  const [startChatMutation] = useStartChatMutation()
 
   const validUrlText = 'Enter a valid URL ie. https://holoinvites.com'
   const validateUrl = (value: string) => {
+    if (!value.trim().startsWith('https://'))
+      return `${validUrlText}. Only https sites are currently supported.`
     const isUrl = urlSafe({}).test(value)
     if (!isUrl) return validUrlText
     return true
